@@ -11,14 +11,22 @@ config_version=5
 [application]
 
 config/name="Godot CI/CD Template"
-run/main_scene="uid://bwh71va80b01n"
+run/main_scene="uid://bkk2yoh2iebki"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Ocean="*uid://0x18b2h5nnor"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/ocean3d/plugin.cfg")
 
 [physics]
 
