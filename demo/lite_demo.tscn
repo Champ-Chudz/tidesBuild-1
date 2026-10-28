@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://addons/ocean3d_lite/ocean_surface.gd" id="1"]
+[ext_resource type="Script" path="res://addons/ocean3d_lite/floating_body.gd" id="2"]
+[ext_resource type="Resource" path="res://addons/ocean3d_lite/profiles/calm.tres" id="3"]
+
+[sub_resource type="StandardMaterial3D" id="crate_mat"]
+albedo_color = Color(0.72, 0.53, 0.32, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="crate_mesh"]
+material = SubResource("crate_mat")
+size = Vector3(1, 0.6, 1)
+
+[sub_resource type="BoxShape3D" id="crate_shape"]
+size = Vector3(1, 0.6, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
+sky_top_color = Color(0.25, 0.46, 0.72, 1)
+sky_horizon_color = Color(0.71, 0.79, 0.85, 1)
+ground_horizon_color = Color(0.71, 0.79, 0.85, 1)
+
+[sub_resource type="Sky" id="sky"]
+sky_material = SubResource("sky_mat")
+
+[sub_resource type="Environment" id="env"]
+background_mode = 2
+sky = SubResource("sky")
+tonemap_mode = 2
+
+[node name="LiteDemo" type="Node3D"]
+
+[node name="OceanSurface" type="Node3D" parent="."]
+script = ExtResource("1")
+wave_profile = ExtResource("3")
+
+[node name="Crate" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mass = 25.0
+script = ExtResource("2")
+probe_points = Array[Vector3]([Vector3(-0.5, 0, -0.5), Vector3(0.5, 0, -0.5), Vector3(-0.5, 0, 0.5), Vector3(0.5, 0, 0.5)])
+buoyancy_strength = 60.0
+
+[node name="Shape" type="CollisionShape3D" parent="Crate"]
+shape = SubResource("crate_shape")
+
+[node name="Mesh" type="MeshInstance3D" parent="Crate"]
+mesh = SubResource("crate_mesh")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9612617, 0.2756374, 0, -0.2756374, 0.9612617, 0, 3.5, 8)
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9063078, 0.2716538, -0.3237443, 0, 0.7660444, 0.6427876, 0.4226183, -0.5825634, 0.6942721, 0, 10, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
