@@ -18,6 +18,7 @@ mesh = SubResource("CapsuleMesh_57qmd")
 script = ExtResource("1_7k104")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1111620419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.063664, 0)
 shape = SubResource("CapsuleShape3D_g4v7s")
 
 [node name="Area3D(Detection)" type="Area3D" parent="CharacterBody3D" unique_id=2033344658]
