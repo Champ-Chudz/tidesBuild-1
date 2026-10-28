@@ -121,6 +121,3 @@ func _physics_process(delta: float) -> void:
 	else:
 		linear_damp = 0.0
 		angular_damp = air_angular_drag
-		
-	
-	

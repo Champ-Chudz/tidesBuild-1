@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://du527bsrvtnyq"]
+
+[ext_resource type="Script" uid="uid://bpedgkby8a2fd" path="res://demo/boat_controller.gd" id="2"]
+[ext_resource type="Script" uid="uid://bg5psfyf4cd35" path="res://addons/ocean3d/wake_emitter.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://boi3jjokhx5gj" path="res://demo/models/small_ship.glb" id="5"]
+
+[sub_resource type="BoxShape3D" id="hull_shape"]
+size = Vector3(1.8, 1, 5)
+
+[node name="Skiff" type="RigidBody3D" unique_id=661792325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mass = 250.0
+script = ExtResource("2")
+probe_points = Array[Vector3]([Vector3(-0.8, -0.2, -2.2), Vector3(0.8, -0.2, -2.2), Vector3(-0.8, -0.2, 2), Vector3(0.8, -0.2, 2)])
+buoyancy_strength = 40.0
+
+[node name="Shape" type="CollisionShape3D" parent="." unique_id=901072740]
+shape = SubResource("hull_shape")
+
+[node name="Model" parent="." unique_id=1211558009 instance=ExtResource("5")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, -0.3, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=325231684]
+transform = Transform3D(1, 0, 0, 0, 0.9563, 0.2924, 0, -0.2924, 0.9563, 0, 3.8, 8.5)
+
+[node name="WakeEmitter" type="Node3D" parent="." unique_id=1943427032 node_paths=PackedStringArray("body")]
+script = ExtResource("4")
+body = NodePath("..")
+hull_length = 5.0
+hull_beam = 2.2

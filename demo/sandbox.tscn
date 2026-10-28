@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b8c7etca8jkq2"]
+
+[ext_resource type="Script" uid="uid://c16i56akbihkn" path="res://addons/ocean3d/ocean_surface.gd" id="1_ukc4u"]
+[ext_resource type="Script" uid="uid://dqt5toh78clx" path="res://addons/ocean3d/floating_body.gd" id="2_3hj2a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ra48"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ra48"]
+
+[node name="Node3D" type="Node3D" unique_id=854845440]
+
+[node name="OceanSurface" type="Node3D" parent="." unique_id=614469468]
+script = ExtResource("1_ukc4u")
+metadata/_custom_type_script = "uid://c16i56akbihkn"
+
+[node name="FloatingBody" type="RigidBody3D" parent="." unique_id=1454080541]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -6)
+script = ExtResource("2_3hj2a")
+probe_points = Array[Vector3]([Vector3(-0.5, 0, -0.5), Vector3(0.5, 0, -0.5), Vector3(-0.5, 0, 0.5), Vector3(0.5, 0, 0.5)])
+metadata/_custom_type_script = "uid://dqt5toh78clx"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingBody" unique_id=1163245535]
+shape = SubResource("BoxShape3D_2ra48")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingBody" unique_id=1012758843]
+mesh = SubResource("BoxMesh_2ra48")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=151665320]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D" unique_id=2014754149]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)

@@ -2,7 +2,34 @@
 
 [ext_resource type="Script" uid="uid://c16i56akbihkn" path="res://addons/ocean3d/ocean_surface.gd" id="1_h2yge"]
 [ext_resource type="Resource" uid="uid://bwtlp2xb85c2t" path="res://addons/ocean3d/profiles/calm.tres" id="2_1bvp3"]
-[ext_resource type="Script" uid="uid://dqt5toh78clx" path="res://addons/ocean3d/floating_body.gd" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://fkcq7s8ft58d" path="res://Boat.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://be8o5chx6neqr" path="res://Player.tscn" id="4_1bvp3"]
+
+[sub_resource type="GDScript" id="GDScript_g4v7s"]
+script/source = "extends Node3D
+
+@onready var boat: FloatingBody = $FloatingBody
+@onready var player: CharacterBody3D = $CharacterBody3D
+
+
+var controlled: Node3D
+
+
+func _ready() -> void:
+	_set_controlled(boat)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB:
+		_set_controlled(player if controlled == boat else boat)
+
+
+func _set_controlled(target: Node3D) -> void:
+	controlled = target
+	boat.active = (target == boat)
+	player.active = (target == player)
+	target.get_node(\"Camera3D\").make_current()
+"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_57qmd"]
 
@@ -14,10 +41,10 @@ background_mode = 2
 sky = SubResource("Sky_yf5fn")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(8.042236, 1, 10.307617)
 
 [node name="Node3D" type="Node3D" unique_id=560354305]
+script = SubResource("GDScript_g4v7s")
 
 [node name="OceanSurface" type="Node3D" parent="." unique_id=356129471]
 script = ExtResource("1_h2yge")
@@ -29,39 +56,15 @@ environment = SubResource("Environment_g4v7s")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=378315759]
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1175364374]
-transform = Transform3D(1, 0, 0, 0, 0.97998464, 0.19907299, 0, -0.19907299, 0.97998464, 0, 10.820929, 20.024239)
-
-[node name="FloatingBody" type="RigidBody3D" parent="." unique_id=184455575]
+[node name="FloatingBody" parent="." unique_id=1451879912 instance=ExtResource("3_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8523717, -5.373439)
-script = ExtResource("3_lquwl")
-probe_points = Array[Vector3]([Vector3(-1, -1, -1), Vector3(1, -1, -1), Vector3(-1, -1, 1), Vector3(1, -1, 1)])
-metadata/_custom_type_script = "uid://dqt5toh78clx"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingBody" unique_id=179809572]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=5481481]
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1728717287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.789436, 4.109787, 4.6538086)
 shape = SubResource("BoxShape3D_yf5fn")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingBody" unique_id=1607833187]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-mesh = SubResource("BoxMesh_g4v7s")
-[ext_resource type="PackedScene" uid="uid://dege7lxv025ta" path="res://character.tscn" id="1_ig7tw"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ig7tw"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ynmd1"]
-size = Vector2(712, 99)
-
-[node name="Node2D" type="Node2D" unique_id=935881359]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1614953030]
-physics_material_override = SubResource("PhysicsMaterial_ig7tw")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=445514534]
-position = Vector2(-7, 90)
-shape = SubResource("RectangleShape2D_ynmd1")
-
-[node name="CharacterBody2D" parent="." unique_id=979681136 instance=ExtResource("1_ig7tw")]
-position = Vector2(-9, -30)
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=63645859]
+[node name="CharacterBody3D" parent="." unique_id=369606752 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.524976, 5.609787, 5.3197165)
