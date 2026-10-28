@@ -53,6 +53,10 @@ jobs:
           ~/.local/bin/godot --headless --import
           mkdir -p build/web
           ~/.local/bin/godot --headless --export-release "Web" build/web/index.html
+          cp coi-serviceworker.js build/web/coi-serviceworker.js
+          if ! grep -q "coi-serviceworker.js" build/web/index.html; then
+            sed -i 's#<head>#<head><script src="coi-serviceworker.js"></script>#' build/web/index.html
+          fi
           ls build/web
 
       - name: Setup Pages (auto-enables Pages with workflow build source)
