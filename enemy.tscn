@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bdg4k3derwino"]
+
+[ext_resource type="Script" uid="uid://cy76cfewut25i" path="res://enemyMovement.gd" id="1_7k104"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_57qmd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+
+[node name="Enemy" type="Node" unique_id=521863688]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=278792497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.060919, 0)
+mesh = SubResource("CapsuleMesh_57qmd")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=471281807]
+script = ExtResource("1_7k104")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1111620419]
+shape = SubResource("CapsuleShape3D_g4v7s")
+
+[node name="Area3D(Detection)" type="Area3D" parent="CharacterBody3D" unique_id=2033344658]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1430316, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Area3D(Detection)" unique_id=1826934145]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("SphereShape3D_g4v7s")
+
+[connection signal="body_entered" from="CharacterBody3D/Area3D(Detection)" to="CharacterBody3D" method="_on_area_3d_detection_body_entered"]
+[connection signal="body_exited" from="CharacterBody3D/Area3D(Detection)" to="CharacterBody3D" method="_on_area_3d_detection_body_exited"]
