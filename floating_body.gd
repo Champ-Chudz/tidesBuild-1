@@ -4,6 +4,10 @@ extends FloatingBody
 @export var thrust := 50.0
 @export var steer_torque := 50.0
 @export var active := true
+var InControlZone = false
+
+
+
 
 func _physics_process(delta: float) -> void:
 	super(delta)
@@ -24,3 +28,11 @@ func _physics_process(delta: float) -> void:
 	if fwd.length_squared() > 0.001:
 		apply_central_force(fwd.normalized() * thrust * throttle)
 	apply_torque(Vector3.UP * steer_torque * steer)
+
+
+func _on_area_3d_body_entered(body: CharacterBody3D) -> void:
+	Global.InControlZone = true
+
+
+func _on_area_3d_body_exited(body: CharacterBody3D) -> void:
+	Global.InControlZone = false

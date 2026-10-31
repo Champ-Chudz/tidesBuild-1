@@ -20,15 +20,19 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB:
-		_set_controlled(player if controlled == boat else boat)
-
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB and Global.InControlZone == true:
+		_set_controlled(boat)
+	elif event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB and controlled == boat:
+		_set_controlled(player)
 
 func _set_controlled(target: Node3D) -> void:
 	controlled = target
 	boat.active = (target == boat)
 	player.active = (target == player)
-	target.get_node(\"Camera3D\").make_current()
+	if target == player:
+		target.get_node(\"Camera3D\").make_current()
+	elif target == boat:
+		target.get_node(\"Camera3D\").make_current()
 "
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_57qmd"]
