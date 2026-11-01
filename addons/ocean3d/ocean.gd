@@ -79,6 +79,7 @@ func get_height(x: float, z: float) -> float:
 	return get_height_at(x, z, time)
 
 
+
 func get_height_at(x: float, z: float, at_time: float) -> float:
 	var px := x
 	var pz := z

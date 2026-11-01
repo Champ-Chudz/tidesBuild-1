@@ -106,6 +106,9 @@ func _ready() -> void:
 	_near.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	_near.top_level = true
 	add_child(_near)
+	
+
+
 
 	var far_plane := PlaneMesh.new()
 	far_plane.size = Vector2(far_size, far_size)

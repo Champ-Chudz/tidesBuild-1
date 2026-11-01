@@ -61,14 +61,16 @@ environment = SubResource("Environment_g4v7s")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=378315759]
 
 [node name="FloatingBody" parent="." unique_id=1451879912 instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8523717, -5.373439)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121.710304, 3.8523717, -5.373439)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=5481481]
 gravity_scale = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1728717287]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.789436, 4.109787, 4.6538086)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.789436, -0.30206776, 4.6538086)
 shape = SubResource("BoxShape3D_yf5fn")
 
 [node name="CharacterBody3D" parent="." unique_id=369606752 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.524976, 5.609787, 5.3197165)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.580513, 6.3718057, 4.644804)
+
+[node name="Timer" type="Timer" parent="." unique_id=703451601]
