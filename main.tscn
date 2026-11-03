@@ -17,9 +17,7 @@ var controlled: Node3D
 
 func _ready() -> void:
 	_set_controlled(boat)
-	
-	await get_tree().create_timer(1000.0).timeout
-	Ocean.start_drain(-0.5)
+
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -67,7 +65,7 @@ environment = SubResource("Environment_g4v7s")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=378315759]
 
 [node name="FloatingBody" parent="." unique_id=1451879912 instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121.710304, 3.8523717, -5.373439)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.056744, 3.8523717, -5.373439)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=5481481]
 gravity_scale = 0.0
@@ -77,9 +75,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.789436, -0.30206776, 4.653
 shape = SubResource("BoxShape3D_yf5fn")
 
 [node name="CharacterBody3D" parent="." unique_id=369606752 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.580513, 1.9540677, 4.644804)
-
-[node name="Timer" type="Timer" parent="." unique_id=703451601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.75021, 3.6107788, 4.625387)
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="." unique_id=1605206959]
 gravity_scale = 0.0

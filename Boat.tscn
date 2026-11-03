@@ -3,32 +3,31 @@
 [ext_resource type="Script" uid="uid://cr15ovk8gdpmk" path="res://floating_body.gd" id="1_61h38"]
 [ext_resource type="ArrayMesh" uid="uid://dohrmryfuerd0" path="res://demo/models/boat.obj" id="2_yq70o"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
-size = Vector3(2.8308496, 1, 10.406738)
+[sub_resource type="Skin" id="Skin_1bvp3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 
 [node name="FloatingBody" type="RigidBody3D" unique_id=1451879912]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3240342, 0)
+mass = 50.0
 script = ExtResource("1_61h38")
-probe_points = Array[Vector3]([Vector3(-1.5, -1, 19), Vector3(1.5, -1, 19), Vector3(3.5, -1, 2), Vector3(-3.5, -1, 2)])
+probe_points = Array[Vector3]([Vector3(6.9, 2.65, 38.3), Vector3(-6.9, 2.65, 38.3), Vector3(-9.78, 2.68, 0.4), Vector3(9.78, 2.68, 0.4)])
+buoyancy_strength = 20.0
 metadata/_custom_type_script = "uid://dqt5toh78clx"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1047755]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.019325972, 0, 7.440918)
-shape = SubResource("BoxShape3D_yf5fn")
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1516466680]
-transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 0, -6, 0)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -6, 0)
 mesh = ExtResource("2_yq70o")
+skin = SubResource("Skin_1bvp3")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1838960399]
-transform = Transform3D(1, 0, 0, 0, 0.9782959, 0.20721269, 0, -0.20721269, 0.9782959, 0, 10.015896, 21.481796)
+transform = Transform3D(1, 0, 0, 0, 0.941549, 0.33687603, 0, -0.33687603, 0.941549, -0.9293022, 24.408976, 24.95016)
 
 [node name="Area3D" type="Area3D" parent="." unique_id=30404392]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7234473, 13.737299)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1347446962]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.80068, 12.830858)
 shape = SubResource("BoxShape3D_g4v7s")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

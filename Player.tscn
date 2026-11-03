@@ -17,3 +17,27 @@ shape = SubResource("CapsuleShape3D_g4v7s")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=273620535]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1366439, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1749933055]
+follow_viewport_enabled = true
+
+[node name="RiseButton" type="Button" parent="CanvasLayer" unique_id=2137754367]
+offset_right = 55.0
+offset_bottom = 29.0
+text = "Rise water"
+
+[node name="LowerButton" type="Button" parent="CanvasLayer" unique_id=989194625]
+offset_top = 32.0
+offset_right = 105.0
+offset_bottom = 63.0
+text = "Lower water"
+
+[node name="StopButton" type="Button" parent="CanvasLayer" unique_id=629175686]
+offset_top = 64.0
+offset_right = 91.0
+offset_bottom = 95.0
+text = "stop water"
+
+[connection signal="pressed" from="CanvasLayer/RiseButton" to="." method="_on_rise_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/LowerButton" to="." method="_on_lower_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/StopButton" to="." method="_on_stop_button_pressed"]

@@ -31,13 +31,26 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	if Input.MOUSE_MODE_CAPTURED and active:
+
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and active:
 		if event is InputEventMouseMotion:
 			body.rotate_y(-event.relative.x * PlayerSensitivity)
 			camera.rotate_x(-event.relative.y * PlayerSensitivity)
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
+
+
+
+
+func _on_rise_button_pressed() -> void:
+	Ocean.start_drain(1.0)
+
+func _on_lower_button_pressed() -> void:
+	Ocean.start_drain(-1.0)
+
+func _on_stop_button_pressed() -> void:
+	Ocean.stop_drain()
