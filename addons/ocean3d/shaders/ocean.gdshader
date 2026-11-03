@@ -1,6 +1,8 @@
 shader_type spatial;
 render_mode cull_disabled;
 
+uniform float SeaLevel = 0.0;
+
 // Must mirror ocean.gd exactly. OceanSurface pushes the wave table and
 // time into these uniforms so physics and visuals stay in sync.
 // waves[i] = (direction_degrees, steepness, wavelength_meters)
@@ -111,6 +113,7 @@ void vertex() {
 			distance(xz, CAMERA_POSITION_WORLD.xz)));
 	vec3 d = gerstner(xz) * fade;
 	VERTEX += d;
+	VERTEX.y += SeaLevel;
 }
 
 void fragment() {

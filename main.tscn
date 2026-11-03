@@ -17,6 +17,9 @@ var controlled: Node3D
 
 func _ready() -> void:
 	_set_controlled(boat)
+	
+	await get_tree().create_timer(1000.0).timeout
+	Ocean.start_drain(-0.5)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -47,6 +50,9 @@ sky = SubResource("Sky_yf5fn")
 [sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
 size = Vector3(8.042236, 1, 10.307617)
 
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(1, 8.1814575, 1)
+
 [node name="Node3D" type="Node3D" unique_id=560354305]
 script = SubResource("GDScript_g4v7s")
 
@@ -71,6 +77,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.789436, -0.30206776, 4.653
 shape = SubResource("BoxShape3D_yf5fn")
 
 [node name="CharacterBody3D" parent="." unique_id=369606752 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.580513, 6.3718057, 4.644804)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.580513, 1.9540677, 4.644804)
 
 [node name="Timer" type="Timer" parent="." unique_id=703451601]
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="." unique_id=1605206959]
+gravity_scale = 0.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2" unique_id=1925284559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5344543, 0)
+mesh = SubResource("BoxMesh_g4v7s")

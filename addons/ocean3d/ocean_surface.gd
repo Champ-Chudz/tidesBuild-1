@@ -153,6 +153,7 @@ func _push_wave_state() -> void:
 		m.set_shader_parameter("waves", waves)
 		m.set_shader_parameter("t", Ocean.time)
 		m.set_shader_parameter("storm_scale", Ocean.storm_scale)
+		m.set_shader_parameter("SeaLevel", Ocean.SeaLevel)
 	material.set_shader_parameter("disp_fade_start", disp_fade_start)
 	material.set_shader_parameter("disp_fade_end", disp_fade_end)
 

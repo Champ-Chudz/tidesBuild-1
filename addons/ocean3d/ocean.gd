@@ -1,5 +1,7 @@
 extends Node
 
+var sea_draining := false
+
 # Ocean singleton (autoload "Ocean", registered by the Ocean3D plugin).
 # The single source of truth for wave state.
 #
@@ -43,6 +45,9 @@ var _stability_warned := false
 
 func _physics_process(delta: float) -> void:
 	time += delta
+	if sea_draining:
+		SeaLevelTimeEffect = clampf(SeaLevelTimeEffect + sea_rate * delta, sea_min, sea_max)
+
 
 
 # Raw Gerstner displacement of the resting-plane point (x, z) at the
@@ -78,7 +83,21 @@ func get_displacement_at(x: float, z: float, at_time: float) -> Vector3:
 func get_height(x: float, z: float) -> float:
 	return get_height_at(x, z, time)
 
+#Meters per second the sea drops. Try 0.05 for a slow drain.
+var sea_rate := 0.0
+# Lowest the sea is allowed to reach (negative = below start).
+var sea_min := -100.0
+var sea_max := 100.0
 
+
+
+var SeaLevelBase := 0.0
+var SeaLevelTimeEffect := 0.0
+
+# Always up to date: base plus whatever the time effect has added.
+var SeaLevel: float:
+	get:
+		return SeaLevelBase + SeaLevelTimeEffect
 
 func get_height_at(x: float, z: float, at_time: float) -> float:
 	var px := x
@@ -87,8 +106,21 @@ func get_height_at(x: float, z: float, at_time: float) -> float:
 		var d := get_displacement_at(px, pz, at_time)
 		px = x - d.x
 		pz = z - d.z
-	return get_displacement_at(px, pz, at_time).y
+	return get_displacement_at(px, pz, at_time).y + SeaLevel
 
+func start_drain(rate: float = NAN) -> void:
+	if not is_nan(rate):
+		sea_rate = rate
+	sea_draining = true
+
+
+func stop_drain() -> void:
+	sea_draining = false
+
+
+func reset_sea() -> void:
+	sea_draining = false
+	SeaLevelTimeEffect = 0.0
 
 # Vertical velocity of the water surface at (x, z), by finite difference.
 # Buoyant bodies damp against this, not against world rest, so they ride

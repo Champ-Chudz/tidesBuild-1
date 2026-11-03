@@ -1,6 +1,7 @@
 class_name OceanWaveProfile
 extends Resource
 
+
 # A wave table the Ocean autoload evaluates. Swap profiles at runtime
 # for weather changes; the surface reacts instantly, because waves are
 # a pure function of position and time, so there is no state to migrate.
