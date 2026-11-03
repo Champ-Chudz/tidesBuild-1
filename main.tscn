@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB and Global.InControlZone == true:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB and Global.InControlZone == true and controlled != boat:
 		_set_controlled(boat)
 	elif event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB and controlled == boat:
 		_set_controlled(player)
@@ -65,7 +65,8 @@ environment = SubResource("Environment_g4v7s")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=378315759]
 
 [node name="FloatingBody" parent="." unique_id=1451879912 instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.056744, 3.8523717, -5.373439)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.056744, 0.5007653, -5.373439)
+probe_points = Array[Vector3]([Vector3(6.9, 2.65, 38.3), Vector3(-6.9, 2.65, 38.3), Vector3(-9.78, 2.65, 0.4), Vector3(9.78, 2.65, 0.4)])
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=5481481]
 gravity_scale = 0.0
@@ -75,7 +76,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.789436, -0.30206776, 4.653
 shape = SubResource("BoxShape3D_yf5fn")
 
 [node name="CharacterBody3D" parent="." unique_id=369606752 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.75021, 3.6107788, 4.625387)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.192343, 14.282038, 28.173647)
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="." unique_id=1605206959]
 gravity_scale = 0.0

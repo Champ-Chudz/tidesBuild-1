@@ -5,14 +5,17 @@
 
 [sub_resource type="Skin" id="Skin_1bvp3"]
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yq70o"]
+points = PackedVector3Array(-5.031224, 3.917646, 0.022388458, 10.741, 17.572, 1.72, 10.741, 17.572, -2.522, 36.757072, 8.703481, 7.101498, 38.75348, 17.571802, -7.616216, -1.1454401, 17.571802, 10.209854, -11.330249, 17.571802, -6.7665963, 33.776196, 6.5669136, -6.097886, 38.75348, 17.571802, 7.6629877, -0.28122863, 8.667755, -9.473599, -9.843695, 8.6486025, 6.372861, -15.57968, 17.571802, 0.8700143, -1.1454401, 17.571802, -10.165077, -0.3003252, 8.658209, 9.533656, -14.184425, 8.562624, -0.779812, 34.09837, 6.450262, 5.456295, -11.330249, 17.571802, 6.8133674, 36.670918, 8.723667, -7.030649, 6.4971547, 17.571802, 10.209854, 6.4971547, 17.571802, -10.165077, 7.343, 17.572, -2.522, -9.0386095, 8.651295, -6.3233476, 8.497582, 4.1665053, 0.022388458, 0.8485453, 5.7778964, 5.3921657, 1.6007615, 5.7672257, -5.3520784, -14.348471, 8.524186, 0.8315993, -14.72873, 17.571802, -2.5224836, 6.9541707, 8.807261, -9.250329, 6.945334, 8.79621, 9.312793, -7.1197305, 5.635723, 3.1397529, -6.368818, 5.620436, -3.0984564, 29.408985, 17.571802, -8.463842)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(4.644043, 2.8759766, 3.7548828)
 
 [node name="FloatingBody" type="RigidBody3D" unique_id=1451879912]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3240342, 0)
-mass = 50.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3240342, -12.690982)
+mass = 1000.0
 script = ExtResource("1_61h38")
-probe_points = Array[Vector3]([Vector3(6.9, 2.65, 38.3), Vector3(-6.9, 2.65, 38.3), Vector3(-9.78, 2.68, 0.4), Vector3(9.78, 2.68, 0.4)])
-buoyancy_strength = 20.0
+probe_points = Array[Vector3]([Vector3(6.9, 2.65, 38.3), Vector3(-6.9, 2.65, 38.3), Vector3(-9.78, 2.68, 0.4), Vector3(9.78, 2.68, 0.4), Vector3(8.3, 2.66, 20), Vector3(-8.3, 2.66, 20), Vector3(-0.2, 2.68, -15)])
 metadata/_custom_type_script = "uid://dqt5toh78clx"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1516466680]
@@ -20,14 +23,18 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -
 mesh = ExtResource("2_yq70o")
 skin = SubResource("Skin_1bvp3")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=233279989]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -6, 0)
+shape = SubResource("ConvexPolygonShape3D_yq70o")
+
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1838960399]
-transform = Transform3D(1, 0, 0, 0, 0.941549, 0.33687603, 0, -0.33687603, 0.941549, -0.9293022, 24.408976, 24.95016)
+transform = Transform3D(1, 0, 0, 0, 0.941549, 0.33687603, 0, -0.33687603, 0.941549, -0.9293022, 24.408976, 48.13823)
 
 [node name="Area3D" type="Area3D" parent="." unique_id=30404392]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7234473, 13.737299)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1347446962]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.80068, 12.830858)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7839274, 10.946798, 11.453417)
 shape = SubResource("BoxShape3D_g4v7s")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
