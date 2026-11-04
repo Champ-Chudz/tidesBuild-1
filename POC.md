@@ -4,3 +4,7 @@ this is the riskiest assumtion becasue if this doesnt work then we need to rethi
 pass/fail
 water risses/falls smothy without cutting
 pysics are mainted and the floats still ride the wtaer surface
+
+
+passed all dat
+but has revealed problem with charachter and boat interaction that will need to be fixed for next iteration
