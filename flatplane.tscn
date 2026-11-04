@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://b3ownhwdbtrh1"]
+
+[ext_resource type="Script" uid="uid://cy76cfewut25i" path="res://enemyMovement.gd" id="1_i4u0r"]
+[ext_resource type="PackedScene" uid="uid://be8o5chx6neqr" path="res://Player.tscn" id="2_3mlnp"]
+[ext_resource type="PackedScene" uid="uid://fkcq7s8ft58d" path="res://Boat.tscn" id="3_fgfb6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3mlnp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fgfb6"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_q2bn8"]
+
+[sub_resource type="Environment" id="Environment_g4v7s"]
+
+[node name="Flatplane" type="Node3D" unique_id=2135227735]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=530803450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9986725)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1681638371]
+transform = Transform3D(31.888134, 0, 0, 0, -0.028690122, 0, 0, 0, 24.20198, 0, 0, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1946331241]
+transform = Transform3D(31.888134, 0, 0, 0, -0.028690122, 0, 0, 0, 24.20198, 0, 0, 0)
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="Enemyv1" type="CharacterBody3D" parent="." unique_id=396481633]
+script = ExtResource("1_i4u0r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemyv1" unique_id=896216669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.063664, 0)
+shape = SubResource("CapsuleShape3D_3mlnp")
+
+[node name="Area3D(Detection)" type="Area3D" parent="Enemyv1" unique_id=340475473]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1430316, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemyv1/Area3D(Detection)" unique_id=546022630]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("SphereShape3D_fgfb6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemyv1" unique_id=1105723757]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.060919, 0)
+mesh = SubResource("CapsuleMesh_q2bn8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=530002168]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3463695, 3.0822508, 2.3714776)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1152142626]
+environment = SubResource("Environment_g4v7s")
+
+[node name="CharacterBody3D" parent="." unique_id=369606752 groups=["player"] instance=ExtResource("2_3mlnp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.287347, 1.3609266, 0)
+
+[node name="FloatingBody" parent="." unique_id=1451879912 instance=ExtResource("3_fgfb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.674047, -36.56235, -27.040874)
+
+[connection signal="body_entered" from="Enemyv1/Area3D(Detection)" to="Enemyv1" method="_on_area_3d_detection_body_entered"]
+[connection signal="body_exited" from="Enemyv1/Area3D(Detection)" to="Enemyv1" method="_on_area_3d_detection_body_exited"]

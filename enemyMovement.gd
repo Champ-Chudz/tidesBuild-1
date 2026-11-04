@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 		
-		# Optional: Make the enemy smoothly look toward the player
+		#Makes the enemy smoothly look toward the player
 		var look_target = Vector3(player.global_position.x, global_position.y, player.global_position.z)
 		if global_position.distance_to(look_target) > 0.1:
 			look_at(look_target, Vector3.UP)
