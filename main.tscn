@@ -7,33 +7,6 @@
 
 [sub_resource type="GDScript" id="GDScript_g4v7s"]
 script/source = "extends Node3D
-
-@onready var boat: FloatingBody = $FloatingBody
-@onready var player: CharacterBody3D = $CharacterBody3D
-
-
-var controlled: Node3D
-
-
-func _ready() -> void:
-	_set_controlled(boat)
-
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB and Global.InControlZone == true and controlled != boat:
-		_set_controlled(boat)
-	elif event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB and controlled == boat:
-		_set_controlled(player)
-
-func _set_controlled(target: Node3D) -> void:
-	controlled = target
-	boat.active = (target == boat)
-	player.active = (target == player)
-	if target == player:
-		target.get_node(\"Camera3D\").make_current()
-	elif target == boat:
-		target.get_node(\"Camera3D\").make_current()
 "
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_57qmd"]
@@ -54,6 +27,9 @@ size = Vector3(1, 8.1814575, 1)
 [node name="Node3D" type="Node3D" unique_id=560354305]
 script = SubResource("GDScript_g4v7s")
 
+[node name="CharacterBody3D" parent="." unique_id=369606752 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.155876, 15.067586, 22.595028)
+
 [node name="OceanSurface" type="Node3D" parent="." unique_id=356129471]
 script = ExtResource("1_h2yge")
 wave_profile = ExtResource("2_1bvp3")
@@ -66,6 +42,7 @@ environment = SubResource("Environment_g4v7s")
 
 [node name="FloatingBody" parent="." unique_id=1451879912 instance=ExtResource("3_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.056744, 0.5007653, -5.373439)
+collision_mask = 2
 probe_points = Array[Vector3]([Vector3(6.9, 2.65, 38.3), Vector3(-6.9, 2.65, 38.3), Vector3(-9.78, 2.65, 0.4), Vector3(9.78, 2.65, 0.4)])
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=5481481]
@@ -74,9 +51,6 @@ gravity_scale = 0.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1728717287]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.789436, -0.30206776, 4.6538086)
 shape = SubResource("BoxShape3D_yf5fn")
-
-[node name="CharacterBody3D" parent="." unique_id=369606752 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.160191, 3.125537, 3.9926023)
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="." unique_id=1605206959]
 gravity_scale = 0.0

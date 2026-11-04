@@ -11,10 +11,6 @@ var active := false
 
 
 func _physics_process(delta: float) -> void:
-
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
 	var input_dir := Vector2.ZERO
 	if active:
 		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -29,7 +25,17 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	else:
+		velocity.y = maxf(velocity.y, 0.0)
 	move_and_slide()
+
+func _ready() -> void:
+	_set_controlled(player)
+	floor_snap_length = 0.5
+	floor_stop_on_slope = true
+	platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_ADD_VELOCITY
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -37,6 +43,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB and Global.InControlZone == true and controlled != boat:
+		_set_controlled(boat)
+	elif event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB and controlled == boat:
+		_set_controlled(player)
 
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and active:
 		if event is InputEventMouseMotion:
@@ -55,3 +65,22 @@ func _on_lower_button_pressed() -> void:
 
 func _on_stop_button_pressed() -> void:
 	Ocean.stop_drain()
+
+
+@onready var boat: FloatingBody = $"../FloatingBody"
+@onready var player: CharacterBody3D = $"."
+
+
+var controlled: Node3D
+
+
+
+
+func _set_controlled(target: Node3D) -> void:
+	controlled = target
+	boat.active = (target == boat)
+	player.active = (target == player)
+	if target == player:
+		target.get_node("Camera3D").make_current()
+	elif target == boat:
+		target.get_node("Camera3D").make_current()
