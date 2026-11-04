@@ -39,6 +39,7 @@ import/blender/enabled=false
 
 [global_group]
 
+player=""
 camera=""
 
 [input]

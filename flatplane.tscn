@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://b3ownhwdbtrh1"]
+
+[ext_resource type="PackedScene" uid="uid://be8o5chx6neqr" path="res://Player.tscn" id="2_3mlnp"]
+[ext_resource type="PackedScene" uid="uid://fkcq7s8ft58d" path="res://Boat.tscn" id="3_fgfb6"]
+[ext_resource type="PackedScene" uid="uid://bdg4k3derwino" path="res://enemy.tscn" id="3_q2bn8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+
+[sub_resource type="Environment" id="Environment_g4v7s"]
+
+[node name="Flatplane" type="Node3D" unique_id=2135227735]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=530803450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9986725)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1681638371]
+transform = Transform3D(31.888134, 0, 0, 0, -0.028690122, 0, 0, 0, 24.20198, 0, 0, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1946331241]
+transform = Transform3D(31.888134, 0, 0, 0, -0.028690122, 0, 0, 0, 24.20198, 0, 0, 0)
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=530002168]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3463695, 3.0822508, 2.3714776)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1152142626]
+environment = SubResource("Environment_g4v7s")
+
+[node name="CharacterBody3D" parent="." unique_id=369606752 groups=["player"] instance=ExtResource("2_3mlnp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.287347, 1.3609266, 0)
+
+[node name="FloatingBody" parent="." unique_id=1451879912 instance=ExtResource("3_fgfb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.674047, -36.56235, -27.040874)
+
+[node name="CharacterBody3D2" parent="." unique_id=471281807 instance=ExtResource("3_q2bn8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.296503, 1.5687592, 1.6358061)
