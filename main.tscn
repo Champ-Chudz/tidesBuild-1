@@ -28,7 +28,7 @@ size = Vector3(1, 8.1814575, 1)
 script = SubResource("GDScript_g4v7s")
 
 [node name="CharacterBody3D" parent="." unique_id=369606752 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.155876, 15.067586, 22.595028)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.826949, 1.6857293, 4.732197)
 
 [node name="OceanSurface" type="Node3D" parent="." unique_id=356129471]
 script = ExtResource("1_h2yge")
@@ -39,11 +39,6 @@ metadata/_custom_type_script = "uid://c16i56akbihkn"
 environment = SubResource("Environment_g4v7s")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=378315759]
-
-[node name="FloatingBody" parent="." unique_id=1451879912 instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.056744, 0.5007653, -5.373439)
-collision_mask = 2
-probe_points = Array[Vector3]([Vector3(6.9, 2.65, 38.3), Vector3(-6.9, 2.65, 38.3), Vector3(-9.78, 2.65, 0.4), Vector3(9.78, 2.65, 0.4)])
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=5481481]
 gravity_scale = 0.0
@@ -58,3 +53,7 @@ gravity_scale = 0.0
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2" unique_id=1925284559]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5344543, 0)
 mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="FloatingBody" parent="." unique_id=1451879912 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.467844, 6.6837955, 0.87225056)
+mass = 254.928
