@@ -25,6 +25,10 @@ Global="*uid://cbqf6rabiri5e"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/ryant/Documents/godot-cicd-master/video/Pocvideo.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ocean3d/plugin.cfg")

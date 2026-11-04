@@ -1,8 +1,8 @@
 extends FloatingBody
 
 
-@export var thrust := 10000.0
-@export var steer_torque := 500.0
+@export var thrust := 100000.0
+@export var steer_torque := 50000.0
 @export var active := true
 var InControlZone = false
 
