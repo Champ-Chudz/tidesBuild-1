@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=369606752]
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=369606752 groups=["camera"]]
 script = ExtResource("1_xhfnw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=250374806]

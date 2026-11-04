@@ -11,7 +11,7 @@ points = PackedVector3Array(-5.031224, 3.917646, 0.022388458, 10.741, 17.572, 1.
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 size = Vector3(4.644043, 2.8759766, 3.7548828)
 
-[node name="FloatingBody" type="RigidBody3D" unique_id=1451879912]
+[node name="FloatingBody" type="RigidBody3D" unique_id=1451879912 groups=["camera"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3240342, -12.690982)
 mass = 1000.0
 script = ExtResource("1_61h38")

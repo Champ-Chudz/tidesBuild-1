@@ -68,19 +68,15 @@ func _on_stop_button_pressed() -> void:
 
 
 @onready var boat: FloatingBody = $"../FloatingBody"
-@onready var player: CharacterBody3D = $"."
-
+@onready var player: CharacterBody3D = self
 
 var controlled: Node3D
 
-
-
-
 func _set_controlled(target: Node3D) -> void:
 	controlled = target
-	boat.active = (target == boat)
+	if boat:
+		boat.active = (target == boat)
 	player.active = (target == player)
-	if target == player:
-		target.get_node("Camera3D").make_current()
-	elif target == boat:
-		target.get_node("Camera3D").make_current()
+	var cam := target.get_node_or_null("Camera3D") as Camera3D
+	if cam:
+		cam.make_current()
