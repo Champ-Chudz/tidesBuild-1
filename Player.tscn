@@ -7,6 +7,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=369606752 groups=["camera"]]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_xhfnw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=250374806]
@@ -16,7 +17,7 @@ mesh = SubResource("CapsuleMesh_57qmd")
 shape = SubResource("CapsuleShape3D_g4v7s")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=273620535]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1366439, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.9602386, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1749933055]
 follow_viewport_enabled = true
