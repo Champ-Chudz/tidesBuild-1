@@ -4,6 +4,8 @@
 [ext_resource type="Resource" uid="uid://bwtlp2xb85c2t" path="res://addons/ocean3d/profiles/calm.tres" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://fkcq7s8ft58d" path="res://Boat.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://be8o5chx6neqr" path="res://Player.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://c4hamehw5xvpt" path="res://lvl/basic_lvl.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bdg4k3derwino" path="res://enemy.tscn" id="6_7mycd"]
 
 [sub_resource type="GDScript" id="GDScript_g4v7s"]
 script/source = "extends Node3D
@@ -36,3 +38,9 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 13.780251, 5.5414734, 6.46793
 
 [node name="FloatingBody" parent="." unique_id=1451879912 instance=ExtResource("3_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.826084, 0, -8.32229)
+
+[node name="BasicLvl" parent="." unique_id=1576848503 instance=ExtResource("5_lquwl")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -76.62919, 3.2354221, -51.998344)
+
+[node name="CharacterBody3D2" parent="." unique_id=471281807 instance=ExtResource("6_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.554075, 4.235424, 9.602295)
