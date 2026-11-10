@@ -34,7 +34,7 @@ environment = SubResource("Environment_g4v7s")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=378315759]
 
 [node name="CharacterBody3D" parent="." unique_id=369606752 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 13.780251, 5.5414734, 6.4679317)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -62.87622, 5.5414734, 6.4679317)
 
 [node name="FloatingBody" parent="." unique_id=1451879912 instance=ExtResource("3_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.826084, 0, -8.32229)

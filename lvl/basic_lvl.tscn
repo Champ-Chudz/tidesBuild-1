@@ -28,40 +28,46 @@ shape = SubResource("WorldBoundaryShape3D_yf5fn")
 transform = Transform3D(4.0959992, 0, 0, 0, 4.0959992, 0, 0, 0, 4.0959992, -133.92365, -92.19764, 211.17053)
 mesh = ExtResource("2_73k43")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rock/rooooock5" unique_id=1751329049]
-shape = SubResource("ConcavePolygonShape3D_xvi53")
-
 [node name="rooooock4" type="MeshInstance3D" parent="rock" unique_id=590347436]
 transform = Transform3D(6.5536017, 0, 0, 0, 6.5536017, 0, 0, 0, 6.5536017, -637.8921, -118.86459, -825.485)
 mesh = ExtResource("2_73k43")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rock/rooooock4" unique_id=364019939]
-shape = SubResource("ConcavePolygonShape3D_xvi53")
 
 [node name="rooooock3" type="MeshInstance3D" parent="rock" unique_id=673796188]
 transform = Transform3D(2.5600002, 0, 0, 0, 2.5600002, 0, 0, 0, 2.5600002, 416.45386, 15.827972, -511.0545)
 mesh = ExtResource("2_73k43")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rock/rooooock3" unique_id=2146680536]
-shape = SubResource("ConcavePolygonShape3D_xvi53")
-
 [node name="rooooock" type="MeshInstance3D" parent="rock" unique_id=1442906201]
 transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 177.11797, 0, -196.55942)
 mesh = ExtResource("2_73k43")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rock/rooooock" unique_id=1283144706]
-shape = SubResource("ConcavePolygonShape3D_xvi53")
 
 [node name="rooooock2" type="MeshInstance3D" parent="rock" unique_id=796901311]
 transform = Transform3D(2.5600002, 0, 0, 0, 2.5600002, 0, 0, 0, 2.5600002, -377.747, -67.51602, 91.45145)
 mesh = ExtResource("2_73k43")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rock/rooooock2" unique_id=1272202028]
-shape = SubResource("ConcavePolygonShape3D_xvi53")
-
 [node name="rooooock6" type="MeshInstance3D" parent="rock" unique_id=492115224]
 transform = Transform3D(4.0959983, 0, 0, 0, 4.0959983, 0, 0, 0, 4.0959983, -517.72815, 11.209602, 552.26855)
 mesh = ExtResource("2_73k43")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rock/rooooock6" unique_id=652213415]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rock" unique_id=1751329049]
+transform = Transform3D(4.0959992, 0, 0, 0, 4.0959992, 0, 0, 0, 4.0959992, -133.92365, -92.19764, 211.17053)
+shape = SubResource("ConcavePolygonShape3D_xvi53")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="rock" unique_id=364019939]
+transform = Transform3D(6.5536017, 0, 0, 0, 6.5536017, 0, 0, 0, 6.5536017, -637.8921, -118.86459, -825.485)
+shape = SubResource("ConcavePolygonShape3D_xvi53")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="rock" unique_id=2146680536]
+transform = Transform3D(2.5600002, 0, 0, 0, 2.5600002, 0, 0, 0, 2.5600002, 416.45386, 15.827972, -511.0545)
+shape = SubResource("ConcavePolygonShape3D_xvi53")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="rock" unique_id=1283144706]
+transform = Transform3D(1.6000001, 0, 0, 0, 1.6000001, 0, 0, 0, 1.6000001, 177.11798, 0, -196.55943)
+shape = SubResource("ConcavePolygonShape3D_xvi53")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="rock" unique_id=1272202028]
+transform = Transform3D(2.5600002, 0, 0, 0, 2.5600002, 0, 0, 0, 2.5600002, -377.747, -67.51602, 91.45145)
+shape = SubResource("ConcavePolygonShape3D_xvi53")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="rock" unique_id=652213415]
+transform = Transform3D(4.0959983, 0, 0, 0, 4.0959983, 0, 0, 0, 4.0959983, -517.72815, 11.209602, 552.26855)
 shape = SubResource("ConcavePolygonShape3D_xvi53")
