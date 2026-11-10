@@ -33,8 +33,8 @@ environment = SubResource("Environment_g4v7s")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=378315759]
 
-[node name="CharacterBody3D" parent="." unique_id=369606752 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -62.87622, 5.5414734, 6.4679317)
+[node name="CharacterBody3D" parent="." unique_id=369606752 groups=["player"] instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.977633, 5.5414734, 6.4679317)
 
 [node name="FloatingBody" parent="." unique_id=1451879912 instance=ExtResource("3_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.826084, 0, -8.32229)
@@ -43,4 +43,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.826084, 0, -8.32229)
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -76.62919, 3.2354221, -51.998344)
 
 [node name="CharacterBody3D2" parent="." unique_id=471281807 instance=ExtResource("6_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.554075, 4.235424, 9.602295)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.03912, 6.518718, -10.232923)
