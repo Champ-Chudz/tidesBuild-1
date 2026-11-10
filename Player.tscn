@@ -6,6 +6,12 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
+[sub_resource type="GDScript" id="GDScript_g4v7s"]
+script/source = "extends Label
+
+var score = 0
+"
+
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=369606752 groups=["camera"]]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 collision_layer = 3
@@ -39,6 +45,12 @@ offset_top = 64.0
 offset_right = 91.0
 offset_bottom = 95.0
 text = "stop water"
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer" unique_id=1113635121]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score: 0"
+script = SubResource("GDScript_g4v7s")
 
 [connection signal="pressed" from="CanvasLayer/RiseButton" to="." method="_on_rise_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/LowerButton" to="." method="_on_lower_button_pressed"]

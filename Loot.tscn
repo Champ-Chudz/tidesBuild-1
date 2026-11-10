@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dyxpcrdltwrtr"]
+
+[sub_resource type="GDScript" id="GDScript_g4v7s"]
+script/source = "extends RigidBody3D
+
+
+func _on_area_3d_body_entered(body: CharacterBody3D) -> void:
+	#gf
+"
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_57qmd"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yf5fn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yf5fn"]
+radius = 0.63916016
+height = 2.0595703
+
+[node name="RigidBody3D" type="RigidBody3D" unique_id=51988423]
+script = SubResource("GDScript_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1670732927]
+transform = Transform3D(0.705, 0, 0, 0, 0.705, 0, 0, 0, 0.705, 0, 0, 0)
+mesh = SubResource("CylinderMesh_57qmd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1730395961]
+transform = Transform3D(0.705, 0, 0, 0, 0.705, 0, 0, 0, 0.705, 0, 0, 0)
+shape = SubResource("CylinderShape3D_yf5fn")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1723416197]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=230120250]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.029785156, 0)
+shape = SubResource("CapsuleShape3D_yf5fn")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

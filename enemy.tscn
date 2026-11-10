@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://bdg4k3derwino"]
 
 [ext_resource type="Script" uid="uid://cy76cfewut25i" path="res://enemyMovement.gd" id="1_7k104"]
+[ext_resource type="ArrayMesh" uid="uid://dqxckkw71xx4w" path="res://demo/models/lionfish.obj" id="2_4gyqm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_57qmd"]
+radius = 0.56083155
 
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=471281807]
 script = ExtResource("1_7k104")
@@ -23,7 +23,8 @@ transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 shape = SubResource("SphereShape3D_g4v7s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=278792497]
-mesh = SubResource("CapsuleMesh_57qmd")
+transform = Transform3D(-1.5517543e-08, 0, 0.355, 0, 0.355, 0, -0.355, 0, -1.5517543e-08, 0, 0, 0)
+mesh = ExtResource("2_4gyqm")
 
 [node name="Enemy" type="Node" parent="." unique_id=521863688]
 

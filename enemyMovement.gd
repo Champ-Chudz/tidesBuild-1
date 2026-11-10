@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed: float = 2.0
+@export var speed: float = 4.0
 @export var wander_radius: float = 8.0
 @export var wander_wait_time: float = 2.0
 
