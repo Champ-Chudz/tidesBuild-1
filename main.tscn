@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://be8o5chx6neqr" path="res://Player.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://c4hamehw5xvpt" path="res://lvl/basic_lvl.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bdg4k3derwino" path="res://enemy.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://dyxpcrdltwrtr" path="res://Loot.tscn" id="7_272bh"]
 
 [sub_resource type="GDScript" id="GDScript_g4v7s"]
 script/source = "extends Node3D
@@ -33,14 +34,32 @@ environment = SubResource("Environment_g4v7s")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=378315759]
 
-[node name="CharacterBody3D" parent="." unique_id=369606752 groups=["player"] instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.977633, 5.5414734, 6.4679317)
-
 [node name="FloatingBody" parent="." unique_id=1451879912 instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.826084, 0, -8.32229)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.934906, 0, -8.32229)
+
+[node name="CharacterBody3D" parent="." unique_id=369606752 groups=["player"] instance=ExtResource("4_1bvp3")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.625208, 5.9616613, 6.4679317)
 
 [node name="BasicLvl" parent="." unique_id=1576848503 instance=ExtResource("5_lquwl")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -76.62919, 3.2354221, -51.998344)
 
 [node name="CharacterBody3D2" parent="." unique_id=471281807 instance=ExtResource("6_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.03912, 6.518718, -10.232923)
+
+[node name="RigidBody3D" parent="." unique_id=51988423 instance=ExtResource("7_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1787071, 3.940423, 19.730358)
+
+[node name="RigidBody3D2" parent="." unique_id=775941895 instance=ExtResource("7_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8227997, 3.9904232, 26.832798)
+
+[node name="RigidBody3D3" parent="." unique_id=719663534 instance=ExtResource("7_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.982983, 3.9904213, 32.370693)
+
+[node name="RigidBody3D4" parent="." unique_id=299049053 instance=ExtResource("7_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.381691, 3.9904213, 17.067497)
+
+[node name="RigidBody3D5" parent="." unique_id=1961168213 instance=ExtResource("7_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.30896, 3.9904213, 19.783363)
+
+[node name="RigidBody3D6" parent="." unique_id=1491011042 instance=ExtResource("7_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.109856, 3.9904213, 30.700241)

@@ -4,7 +4,7 @@ extends CharacterBody3D
 @onready var body = $"."
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 5.5
 
 
 var PlayerSensitivity = 0.005
@@ -40,10 +40,12 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB and Global.InControlZone == true and controlled != boat:
 		_set_controlled(boat)
 	elif event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB and controlled == boat:
@@ -55,6 +57,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			camera.rotate_x(-event.relative.y * PlayerSensitivity)
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
+	if Global.inLootZone == true and Global.lootHeld > 0 and event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_E:
+		Global.lootInBoat += 1
+		Global.lootHeld -= 1
 
 
 

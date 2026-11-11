@@ -30,9 +30,17 @@ func _physics_process(delta: float) -> void:
 	apply_torque(Vector3.UP * steer_torque * steer)
 
 
-func _on_area_3d_body_entered(body: CharacterBody3D) -> void:
-	Global.InControlZone = true
-
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body is CharacterBody3D:
+		Global.InControlZone = true
 
 func _on_area_3d_body_exited(body: CharacterBody3D) -> void:
 	Global.InControlZone = false
+
+func _on_area_3_dlootzone_body_entered(body: Node3D) -> void:
+	if body is CharacterBody3D:
+		Global.inLootZone = true
+
+func _on_area_3_dlootzone_body_exited(body: Node3D) -> void:
+	if body is CharacterBody3D:
+		Global.inLootZone = false

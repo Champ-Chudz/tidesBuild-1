@@ -12,7 +12,8 @@ agent_max_climb = 0.5
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_yf5fn"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3lm0q"]
+size = Vector3(1700.394, 1, 2139.12)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3gngh"]
 size = Vector2(10, 10)
@@ -33,8 +34,8 @@ transform = Transform3D(850.1967, 0, 0, 0, 710.0543, 0, 0, 0, 1069.5686, 0, 0, 0
 mesh = SubResource("PlaneMesh_g4v7s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D" unique_id=1990853100]
-transform = Transform3D(850.1967, 0, 0, 0, 710.05426, 0, 0, 0, 1069.5686, 0, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_yf5fn")
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
+shape = SubResource("BoxShape3D_3lm0q")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=1300368324]
 mesh = SubResource("PlaneMesh_3gngh")

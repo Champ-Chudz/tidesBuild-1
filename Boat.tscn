@@ -2,11 +2,14 @@
 
 [ext_resource type="Script" uid="uid://cr15ovk8gdpmk" path="res://floating_body.gd" id="1_61h38"]
 [ext_resource type="ArrayMesh" uid="uid://ta3clb3g1cn2" path="res://demo/models/boat_again.obj" id="2_yq70o"]
+[ext_resource type="Script" uid="uid://cc47rnjdq7jc7" path="res://label_3d.gd" id="3_76s1m"]
 
 [sub_resource type="Skin" id="Skin_1bvp3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
-size = Vector3(4.4819336, 2.5925293, 10.17627)
+size = Vector3(5.8137207, 2.5925293, 10.17627)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yq70o"]
 points = PackedVector3Array(-2.4, 0.15, -1.25, -2.4, 0.2, -1.2, -2.3, -0.2, -1.25, -2.25, 0.2, -1.45, -2.2, -0.15, -1.45, -2.15, -0.55, -1.25, -2.15, -0.55, -1.2, -2.15, 0.05, -1.5, -1.7, -0.3, -1.7, -1.55, -0.75, -1.45, -1.5, -0.8, -1.2, -1.3, -0.8, -1.55, -1, -0.55, -2, -1, 0.25, -1.7, -0.95, -0.5, -2.05, -0.95, 0.2, -2.05, -0.95, 0.25, -1.2, -0.85, -0.7, -1.95, -0.75, -0.55, -2.1, -0.75, 0.2, -2.1, -0.6, -0.85, -1.85, -0.5, -0.85, -1.8, -0.25, -0.75, -2.05, -0.2, 0.2, -2.15, 0.25, -0.85, -2.05, 0.4, -0.65, -2.2, 0.4, 0.2, -2.2, 0.5, -0.7, -2.2, 0.65, -0.8, -2.15, 1, -0.7, -2.2, 1, 0.2, -2.2, 1.3, -0.85, -2.05, 1.3, -0.85, -2, 1.4, -0.8, -2.05, 1.4, -0.8, -1.2, 1.4, 0.15, -1.2, 1.4, 0.2, -1.75, 1.45, -0.6, -2.15, 1.45, 0.2, -2.15, 1.45, 0.2, -2.1)
@@ -95,14 +98,32 @@ skin = SubResource("Skin_1bvp3")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1838960399]
 transform = Transform3D(1, 0, 0, 0, 0.941549, 0.33687603, 0, -0.33687603, 0.941549, -0.9293022, 24.408976, 48.13823)
 
-[node name="Area3D" type="Area3D" parent="." unique_id=30404392]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7234473, 13.737299)
-collision_mask = 2
+[node name="Area3Dcameracontrol" type="Area3D" parent="." unique_id=30404392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.739625, 2.671507)
+collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1347446962]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.54459953, 0.89072895, -10.774347)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3Dcameracontrol" unique_id=1347446962]
 shape = SubResource("BoxShape3D_g4v7s")
 debug_color = Color(0.83809185, 0.010649603, 0.92633617, 0.41960785)
+
+[node name="Label3D" type="Label3D" parent="Area3Dcameracontrol" unique_id=975059901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008870363, -1.0161777, -0.5611954)
+pixel_size = 0.015
+billboard = 1
+text = "Press Tab to Switch Control"
+
+[node name="Area3Dlootzone" type="Area3D" parent="." unique_id=1968577523]
+transform = Transform3D(4.965, 0, 0, 0, 4.965, 0, 0, 0, 4.965, 0, 3.469799, 25.019484)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3Dlootzone" unique_id=1416718421]
+shape = SubResource("BoxShape3D_yf5fn")
+debug_color = Color(0, 0.6489345, 0.17442495, 0.41960785)
+
+[node name="Label3D" type="Label3D" parent="Area3Dlootzone" unique_id=564192321]
+billboard = 1
+font_size = 20
+outline_size = 8
+script = ExtResource("3_76s1m")
 
 [node name="Hull01" type="CollisionShape3D" parent="." unique_id=2009827107]
 transform = Transform3D(-1.5298986e-07, 0, -3.5, 0, 3.5, 0, 3.5, 0, -1.5298986e-07, 0, 0, 0)
@@ -200,5 +221,7 @@ shape = SubResource("ConvexPolygonShape3D_udlyd")
 transform = Transform3D(-1.5298986e-07, 0, -3.5, 0, 3.5, 0, 3.5, 0, -1.5298986e-07, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_atdcd")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="Area3Dcameracontrol" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3Dcameracontrol" to="." method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="Area3Dlootzone" to="." method="_on_area_3_dlootzone_body_entered"]
+[connection signal="body_exited" from="Area3Dlootzone" to="." method="_on_area_3_dlootzone_body_exited"]
