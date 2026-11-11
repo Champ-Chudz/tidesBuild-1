@@ -14,3 +14,5 @@ Team has big scheduleing diffreences
 
 Cummication channel is discord, Weekly meetings wednesday and sundays at 6 to whenever
 missing a deadaline = snowball firing squad 
+
+build deployed in WebGl
