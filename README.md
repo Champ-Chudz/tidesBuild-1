@@ -1,7 +1,7 @@
 # godot-cicd
 
-Must: ocean, floor, boat, player, enimie
-Should: shop, upgrades, enimie sounds
+Must: ocean, floor, boat, player, enemy
+Should: shop, upgrades, enemy sounds
 Could: music, mutliplayer
 
 first to cut is multiplayer
@@ -10,14 +10,20 @@ first to cut is multiplayer
 Risks:
 Water physics if the rising/lowering will work with everything
 Design, if the style and art will fit together
-Team has big scheduleing diffreences 
+Team has big scheduling diffreences 
 
-Cummication channel is discord, Weekly meetings wednesday and sundays at 6 to whenever
+Commication channel is discord, Weekly meetings wednesday and sundays at 6 to whenever
 missing a deadaline = snowball firing squad 
 
 build deployed in WebGl
 
 realease notes:
 this build has working water,boat,player,enimie,loot
-this build is missing sound, water enimie, desired level design
-known bugs are visuile bugs with the water, boat still being contrable/movable outside water, the fog effect does not work in Webgl we will move to an itch deployment in the future
+this build is missing sound, water enemy, desired level design
+
+# Known bugs:
+Visual bugs with the water
+   - circle around the player (boat?) when the tide is lowering
+Boat still being contrable/movable outside water
+Boat getting completely stuck upside down or sideways
+Fog effect does not work in Webgl -- will move to an itch deployment in the future
