@@ -20,4 +20,4 @@ build deployed in WebGl
 realease notes:
 this build has working water,boat,player,enimie,loot
 this build is missing sound, water enimie, desired level design
-known bugs are visuile bugs with the water, boat still being contrable/movable outside water
+known bugs are visuile bugs with the water, boat still being contrable/movable outside water, the fog effect does not work in Webgl we will move to an itch deployment in the future
