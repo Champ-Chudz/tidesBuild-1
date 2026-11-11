@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c5s4fjm5qqxms"]
+
+[ext_resource type="Script" uid="uid://cshgptdmvwcke" path="res://node_2d.gd" id="1_if853"]
+
+[node name="DeathScreen" type="Node2D" unique_id=322630361]
+script = ExtResource("1_if853")
+
+[node name="Label" type="Label" parent="." unique_id=336569826]
+offset_left = -52.0
+offset_top = -60.0
+offset_right = 51.0
+offset_bottom = -30.0
+text = "You dead lol"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=795374787]
+zoom = Vector2(3.57, 3.57)
+
+[node name="Button" type="Button" parent="." unique_id=1229384012]
+offset_left = -32.0
+offset_top = 34.0
+offset_right = 18.0
+offset_bottom = 59.0
+text = "exit
+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

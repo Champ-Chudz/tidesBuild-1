@@ -3,17 +3,22 @@
 [ext_resource type="Script" uid="uid://cy76cfewut25i" path="res://enemyMovement.gd" id="1_7k104"]
 [ext_resource type="ArrayMesh" uid="uid://dqxckkw71xx4w" path="res://demo/models/lionfish.obj" id="2_4gyqm"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_qx1e0"]
+size = Vector3(1, 2.255371, 3.104309)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
-radius = 0.56083155
+radius = 0.7262239
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(1.1741943, 2.227539, 3.6152954)
 
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=471281807]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_7k104")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1111620419]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.011874557, 0)
-shape = SubResource("CapsuleShape3D_g4v7s")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1276855, 1.103363)
+shape = SubResource("BoxShape3D_qx1e0")
 
 [node name="Area3D(Detection)" type="Area3D" parent="." unique_id=2033344658]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2962227, 0)
@@ -30,5 +35,12 @@ mesh = ExtResource("2_4gyqm")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1774446497]
 
+[node name="Area3D(playerHit)" type="Area3D" parent="." unique_id=2074489185]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D(playerHit)" unique_id=109652248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021362305, 1.1137695, 1.1387634)
+shape = SubResource("BoxShape3D_g4v7s")
+
 [connection signal="body_entered" from="Area3D(Detection)" to="." method="_on_area_3d_detection_body_entered"]
 [connection signal="body_exited" from="Area3D(Detection)" to="." method="_on_area_3d_detection_body_exited"]
+[connection signal="body_entered" from="Area3D(playerHit)" to="." method="_on_area_3_dplayer_hit_body_entered"]

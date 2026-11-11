@@ -158,3 +158,8 @@ func choose_wander_target() -> void:
 
 	wandering = true
 	wander_timer = 0.0
+
+#when the player make scontact
+func _on_area_3_dplayer_hit_body_entered(body: Node3D) -> void:
+	if body == player:
+		Global.playerdead = true

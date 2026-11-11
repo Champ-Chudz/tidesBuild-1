@@ -86,8 +86,8 @@ func get_height(x: float, z: float) -> float:
 #Meters per second the sea drops. Try 0.05 for a slow drain.
 var sea_rate := 0.0
 # Lowest the sea is allowed to reach (negative = below start).
-var sea_min := -100.0
-var sea_max := 100.0
+var sea_min := -250.0
+var sea_max := 1.0
 
 
 

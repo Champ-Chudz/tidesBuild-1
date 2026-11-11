@@ -54,6 +54,13 @@ offset_bottom = 118.0
 text = "Score: 0"
 script = SubResource("GDScript_g4v7s")
 
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1729743969]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.0134307)
+light_energy = 5.509
+spot_range = 44.665
+spot_angle = 32.7
+spot_angle_attenuation = 5.098222
+
 [connection signal="pressed" from="CanvasLayer/RiseButton" to="." method="_on_rise_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/LowerButton" to="." method="_on_lower_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/StopButton" to="." method="_on_stop_button_pressed"]

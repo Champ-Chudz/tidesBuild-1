@@ -4,12 +4,15 @@ extends CharacterBody3D
 @onready var body = $"."
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 5.5
+const JUMP_VELOCITY = 7.5
 
 
 var PlayerSensitivity = 0.005
 var active := false
 
+func _process(delta: float) -> void:
+	if Global.playerdead == true:
+		get_tree().change_scene_to_file("res://death_screen.tscn")
 
 func _physics_process(delta: float) -> void:
 	var input_dir := Vector2.ZERO

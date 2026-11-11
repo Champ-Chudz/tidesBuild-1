@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c4hamehw5xvpt"]
 
+[ext_resource type="Texture2D" uid="uid://0gs66y80l85p" path="res://4390-diffuse.jpg" id="1_73k43"]
 [ext_resource type="ArrayMesh" uid="uid://i88xob12wv36" path="res://lvl/Rock.Obj" id="2_73k43"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_7mycd"]
@@ -10,7 +11,12 @@ cell_size = 2.0
 agent_height = 2.0
 agent_max_climb = 0.5
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_272bh"]
+albedo_color = Color(0.65882355, 0.56078434, 0.34901962, 1)
+albedo_texture = ExtResource("1_73k43")
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_272bh")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3lm0q"]
 size = Vector3(1700.394, 1, 2139.12)
