@@ -23,7 +23,8 @@ this build is missing sound, water enemy, desired level design
 
 # Known bugs:
 Visual bugs with the water
-- circle around the player (boat?) when the tide is lowering
+ - circle around the player (boat?) when the tide is lowering
+  
 Boat still being contrable/movable outside water
 Boat getting completely stuck upside down or sideways
 Fog effect does not work in Webgl -- will move to an itch deployment in the future
