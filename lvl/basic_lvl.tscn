@@ -34,9 +34,11 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 navigation_mesh = SubResource("NavigationMesh_7mycd")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1152062854]
+collision_layer = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" unique_id=650836718]
 transform = Transform3D(850.1967, 0, 0, 0, 710.0543, 0, 0, 0, 1069.5686, 0, 0, 0)
+layers = 3
 mesh = SubResource("PlaneMesh_g4v7s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D" unique_id=1990853100]
@@ -49,6 +51,8 @@ mesh = SubResource("PlaneMesh_3gngh")
 [node name="Rocks" type="Node3D" parent="NavigationRegion3D" unique_id=909388883]
 
 [node name="Rock2" type="StaticBody3D" parent="NavigationRegion3D/Rocks" unique_id=1670373111]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="NavigationRegion3D/Rocks/Rock2" unique_id=1283144706]
 transform = Transform3D(1.5999999, 0, 0, 0, 1.5999999, 0, 0, 0, 1.5999999, 177.11798, 0, -196.55943)
@@ -59,6 +63,8 @@ transform = Transform3D(1.6000001, 0, 0, 0, 1.6000001, 0, 0, 0, 1.6000001, 177.1
 mesh = ExtResource("2_73k43")
 
 [node name="Rock3" type="StaticBody3D" parent="NavigationRegion3D/Rocks" unique_id=876279058]
+collision_layer = 3
+collision_mask = 3
 
 [node name="rooooock3" type="MeshInstance3D" parent="NavigationRegion3D/Rocks/Rock3" unique_id=673796188]
 transform = Transform3D(2.5600002, 0, 0, 0, 2.5600002, 0, 0, 0, 2.5600002, 416.45386, 15.827972, -511.0545)
@@ -69,6 +75,8 @@ transform = Transform3D(2.5600002, 0, 0, 0, 2.5600002, 0, 0, 0, 2.5600002, 416.4
 shape = SubResource("ConcavePolygonShape3D_xvi53")
 
 [node name="Rock4" type="StaticBody3D" parent="NavigationRegion3D/Rocks" unique_id=1380097957]
+collision_layer = 3
+collision_mask = 3
 
 [node name="rooooock4" type="MeshInstance3D" parent="NavigationRegion3D/Rocks/Rock4" unique_id=590347436]
 transform = Transform3D(6.5536017, 0, 0, 0, 6.5536017, 0, 0, 0, 6.5536017, -637.8921, -118.86459, -825.485)
@@ -79,6 +87,8 @@ transform = Transform3D(6.5536017, 0, 0, 0, 6.5536017, 0, 0, 0, 6.5536017, -637.
 shape = SubResource("ConcavePolygonShape3D_xvi53")
 
 [node name="Rock1" type="StaticBody3D" parent="NavigationRegion3D/Rocks" unique_id=1379075462]
+collision_layer = 3
+collision_mask = 3
 
 [node name="rooooock6" type="MeshInstance3D" parent="NavigationRegion3D/Rocks/Rock1" unique_id=492115224]
 transform = Transform3D(4.0959983, 0, 0, 0, 4.0959983, 0, 0, 0, 4.0959983, -517.72815, 11.209602, 552.26855)
@@ -89,6 +99,8 @@ transform = Transform3D(4.0959983, 0, 0, 0, 4.0959983, 0, 0, 0, 4.0959983, -517.
 shape = SubResource("ConcavePolygonShape3D_xvi53")
 
 [node name="Rock5" type="StaticBody3D" parent="NavigationRegion3D/Rocks" unique_id=125022417]
+collision_layer = 3
+collision_mask = 3
 
 [node name="rooooock5" type="MeshInstance3D" parent="NavigationRegion3D/Rocks/Rock5" unique_id=611084277]
 transform = Transform3D(4.0959992, 0, 0, 0, 4.0959992, 0, 0, 0, 4.0959992, -133.92365, -92.19764, 211.17053)
@@ -99,6 +111,8 @@ transform = Transform3D(4.0959992, 0, 0, 0, 4.0959992, 0, 0, 0, 4.0959992, -133.
 shape = SubResource("ConcavePolygonShape3D_xvi53")
 
 [node name="Rock6" type="StaticBody3D" parent="NavigationRegion3D/Rocks" unique_id=484507172]
+collision_layer = 3
+collision_mask = 3
 
 [node name="rooooock2" type="MeshInstance3D" parent="NavigationRegion3D/Rocks/Rock6" unique_id=796901311]
 transform = Transform3D(2.5600002, 0, 0, 0, 2.5600002, 0, 0, 0, 2.5600002, -377.747, -67.51602, 91.45145)

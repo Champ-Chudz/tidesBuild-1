@@ -27,7 +27,6 @@ sky_material = SubResource("ProceduralSkyMaterial_qi2p4")
 background_mode = 2
 sky = SubResource("Sky_4gyqm")
 tonemap_mode = 3
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.03
 volumetric_fog_albedo = Color(0.16142699, 0.1614323, 0.20180693, 1)
 volumetric_fog_emission_energy = 68.15
@@ -126,6 +125,7 @@ environment = SubResource("Environment_g4v7s")
 
 [node name="FloatingBody" parent="." unique_id=1451879912 instance=ExtResource("3_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.934906, 0, -8.32229)
+steer_torque = 60000.0
 
 [node name="CharacterBody3D" parent="." unique_id=369606752 groups=["player"] instance=ExtResource("4_1bvp3")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 17.196583, 5.9616613, 6.4679317)
