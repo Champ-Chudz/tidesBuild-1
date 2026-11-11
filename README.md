@@ -16,3 +16,8 @@ Cummication channel is discord, Weekly meetings wednesday and sundays at 6 to wh
 missing a deadaline = snowball firing squad 
 
 build deployed in WebGl
+
+realease notes:
+this build has working water,boat,player,enimie,loot
+this build is missing sound, water enimie, desired level design
+known bugs are visuile bugs with the water, boat still being contrable/movable outside water
