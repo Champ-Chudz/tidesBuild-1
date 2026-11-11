@@ -31,18 +31,21 @@ height = 2.0595703
 script = SubResource("GDScript_g4v7s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1670732927]
-transform = Transform3D(0.705, 0, 0, 0, 0.705, 0, 0, 0, 0.705, 0, 0, 0)
 mesh = SubResource("CylinderMesh_57qmd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1730395961]
-transform = Transform3D(0.705, 0, 0, 0, 0.705, 0, 0, 0, 0.705, 0, 0, 0)
 shape = SubResource("CylinderShape3D_yf5fn")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1723416197]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=230120250]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.029785156, 0)
+transform = Transform3D(1.535, 0, 0, 0, 1.535, 0, 0, 0, 1.535, 0, -0.029785156, 0)
 shape = SubResource("CapsuleShape3D_yf5fn")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=457536958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1146035, 0)
+billboard = 1
+text = "Press E to pick up"
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

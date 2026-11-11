@@ -47,6 +47,7 @@ extends RigidBody3D
 # which matters when a big hull carries a probe per cell.
 var _prev_water_h := PackedFloat32Array()
 
+var submerged_count := 0
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -92,7 +93,7 @@ func _physics_process(delta: float) -> void:
 	if fresh:
 		_prev_water_h.resize(n)
 
-	var submerged_count := 0
+	submerged_count = 0
 	for i in n:
 		var share := (probe_weights[i] / w_sum) if weighted else (1.0 / n)
 		var world_p := to_global(probe_points[i])
@@ -121,3 +122,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		linear_damp = 0.0
 		angular_damp = air_angular_drag
+
+func is_in_water() -> bool:
+	return submerged_count > 0

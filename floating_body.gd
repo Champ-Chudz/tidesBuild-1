@@ -13,6 +13,8 @@ func _physics_process(delta: float) -> void:
 	super(delta)
 	if not active and not "--autodrive" in OS.get_cmdline_user_args():
 		return
+	if not is_in_water():
+		return
 	var throttle := 0.0
 	var steer := 0.0
 	if Input.is_key_pressed(KEY_W):
