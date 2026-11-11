@@ -4,15 +4,13 @@ extends CharacterBody3D
 @onready var body = $"."
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 7.5
+const JUMP_VELOCITY = 10.0
 
 
 var PlayerSensitivity = 0.005
 var active := false
 
-func _process(delta: float) -> void:
-	if Global.playerdead == true:
-		get_tree().change_scene_to_file("res://death_screen.tscn")
+
 
 func _physics_process(delta: float) -> void:
 	var input_dir := Vector2.ZERO
@@ -40,6 +38,7 @@ func _ready() -> void:
 	floor_snap_length = 0.5
 	floor_stop_on_slope = true
 	platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_ADD_VELOCITY
+	$TideupTimer.start(300)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -66,14 +65,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 
-func _on_rise_button_pressed() -> void:
-	Ocean.start_drain(1.0)
+#func _on_rise_button_pressed() -> void:
+	#Ocean.start_drain(1.0)
 
-func _on_lower_button_pressed() -> void:
-	Ocean.start_drain(-1.0)
+#func _on_lower_button_pressed() -> void:
+	#Ocean.start_drain(-1.0)
 
-func _on_stop_button_pressed() -> void:
-	Ocean.stop_drain()
+#func _on_stop_button_pressed() -> void:
+	#Ocean.stop_drain()
 
 
 @onready var boat: FloatingBody = $"../FloatingBody"
@@ -89,3 +88,18 @@ func _set_controlled(target: Node3D) -> void:
 	var cam := target.get_node_or_null("Camera3D") as Camera3D
 	if cam:
 		cam.make_current()
+
+func _process(delta: float) -> void:
+	if Global.playerdead == true:
+		get_tree().change_scene_to_file("res://death_screen.tscn")
+
+	if Ocean.SeaLevel > position.y:
+		Global.playerdead = true
+
+
+func _on_tideup_timer_timeout() -> void:
+	Ocean.start_drain(5.0)
+
+
+func _on_ran_ground_button_pressed() -> void:
+		get_tree().change_scene_to_file("res://death_screen.tscn")

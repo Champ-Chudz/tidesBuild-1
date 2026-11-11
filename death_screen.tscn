@@ -6,20 +6,23 @@
 script = ExtResource("1_if853")
 
 [node name="Label" type="Label" parent="." unique_id=336569826]
-offset_left = -52.0
-offset_top = -60.0
-offset_right = 51.0
-offset_bottom = -30.0
-text = "You dead lol"
+offset_left = -94.0
+offset_top = -67.0
+offset_right = 94.0
+offset_bottom = -18.0
+text = "You dead lol
+or didnt get enough loot
+or ran a ground"
+horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=795374787]
 zoom = Vector2(3.57, 3.57)
 
 [node name="Button" type="Button" parent="." unique_id=1229384012]
-offset_left = -32.0
-offset_top = 34.0
-offset_right = 18.0
-offset_bottom = 59.0
+offset_left = -24.0
+offset_top = 30.0
+offset_right = 26.0
+offset_bottom = 61.0
 text = "exit
 "
 

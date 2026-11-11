@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://ftgon5bbypt1"]
+
+[ext_resource type="Script" uid="uid://dhlgseyjyyfmu" path="res://start_screen.gd" id="1_ncxyx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font_size = 32
+
+[node name="StartScreen" type="Node2D" unique_id=1951924752]
+script = ExtResource("1_ncxyx")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=626823169]
+zoom = Vector2(2.55, 2.55)
+
+[node name="Label" type="Label" parent="." unique_id=832817059]
+offset_left = -122.0
+offset_top = 37.0
+offset_right = 122.0
+offset_bottom = 117.0
+text = "Ride the tide down collect the
+ items bring them back to your
+ boat then ride the tide back up"
+
+[node name="Label2" type="Label" parent="." unique_id=1358420782]
+offset_left = -91.0
+offset_top = -102.0
+offset_right = 95.0
+offset_bottom = -38.0
+text = "TIDEDELVER"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="Button" type="Button" parent="." unique_id=1527678964]
+offset_left = 81.0
+offset_top = -31.0
+offset_right = 118.0
+text = "Exit"
+
+[node name="Button2" type="Button" parent="." unique_id=1397010455]
+offset_left = -119.0
+offset_top = -31.0
+offset_right = -73.0
+text = "Start"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

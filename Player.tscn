@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://be8o5chx6neqr"]
 
 [ext_resource type="Script" uid="uid://dtf5x8kxj6xlo" path="res://Player.gd" id="1_xhfnw"]
+[ext_resource type="Script" uid="uid://c3gi4dp3du3bi" path="res://label.gd" id="2_kpjcp"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_57qmd"]
 
@@ -12,6 +13,8 @@ script/source = "extends Label
 func _process(_delta: float):
 	text = \"Loot Held:\" + str(Global.lootHeld)
 "
+
+[sub_resource type="LabelSettings" id="LabelSettings_kpjcp"]
 
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=369606752 groups=["camera"]]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
@@ -30,29 +33,47 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.9602386, 0)
 follow_viewport_enabled = true
 
 [node name="RiseButton" type="Button" parent="CanvasLayer" unique_id=2137754367]
+visible = false
 offset_right = 55.0
 offset_bottom = 29.0
 text = "Rise water"
 
 [node name="LowerButton" type="Button" parent="CanvasLayer" unique_id=989194625]
+visible = false
 offset_top = 32.0
 offset_right = 105.0
 offset_bottom = 63.0
 text = "Lower water"
 
 [node name="StopButton" type="Button" parent="CanvasLayer" unique_id=629175686]
+visible = false
 offset_top = 64.0
 offset_right = 91.0
 offset_bottom = 95.0
 text = "stop water"
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer" unique_id=1113635121]
-offset_left = 1.0
-offset_top = 95.0
-offset_right = 62.0
-offset_bottom = 118.0
+offset_left = 2.0
+offset_top = 63.0
+offset_right = 63.0
+offset_bottom = 86.0
 text = "Score: 0"
 script = SubResource("GDScript_g4v7s")
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=278245439]
+offset_left = 555.0
+offset_top = 1.0
+offset_right = 595.0
+offset_bottom = 24.0
+label_settings = SubResource("LabelSettings_kpjcp")
+horizontal_alignment = 1
+script = ExtResource("2_kpjcp")
+
+[node name="RanGroundButton" type="Button" parent="CanvasLayer" unique_id=1373115703]
+offset_top = 1.0
+offset_right = 165.0
+offset_bottom = 32.0
+text = "Help, I Ran a ground"
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1729743969]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.0134307)
@@ -61,6 +82,12 @@ spot_range = 44.665
 spot_angle = 32.7
 spot_angle_attenuation = 5.098222
 
+[node name="TideupTimer" type="Timer" parent="." unique_id=1474219594]
+one_shot = true
+ignore_time_scale = true
+
 [connection signal="pressed" from="CanvasLayer/RiseButton" to="." method="_on_rise_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/LowerButton" to="." method="_on_lower_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/StopButton" to="." method="_on_stop_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/RanGroundButton" to="." method="_on_ran_ground_button_pressed"]
+[connection signal="timeout" from="TideupTimer" to="." method="_on_tideup_timer_timeout"]

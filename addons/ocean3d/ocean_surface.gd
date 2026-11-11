@@ -141,6 +141,11 @@ func _process(_delta: float) -> void:
 	if storm_styling:
 		_apply_storm_styling()
 
+	if position.y >= 2 and Global.lootInBoat >= 4:
+		get_tree().change_scene_to_file("res://win_screen.tscn")
+	elif position.y >= 2 and Global.lootInBoat < 4:
+		get_tree().change_scene_to_file("res://death_screen.tscn")
+
 
 # Wave table, time, and storm scale go to BOTH tiles every frame. The
 # skirt never displaces, but its per-fragment normals evaluate the

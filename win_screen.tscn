@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c3fo55tk1em45"]
+
+[ext_resource type="Script" uid="uid://c8wv0is2xo0sq" path="res://win_screen.gd" id="1_l2arl"]
+
+[node name="WinScreen" type="Node2D" unique_id=2088445753]
+script = ExtResource("1_l2arl")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=803856535]
+zoom = Vector2(3.685, 3.685)
+
+[node name="Label" type="Label" parent="." unique_id=714962943]
+offset_left = -36.0
+offset_top = -71.0
+offset_right = 43.0
+offset_bottom = -48.0
+text = "YOU WON"
+
+[node name="Button" type="Button" parent="." unique_id=1887240723]
+offset_left = -23.0
+offset_top = -7.0
+offset_right = 24.0
+offset_bottom = 24.0
+text = "Exit"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
