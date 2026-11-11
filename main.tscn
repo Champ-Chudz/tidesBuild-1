@@ -15,7 +15,7 @@ script/source = "extends Node3D
 "
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qi2p4"]
-sky_top_color = Color(0.32442427, 0.41727066, 0.94015014, 1)
+sky_top_color = Color(0.22944191, 0.28241143, 0.84523934, 1)
 sky_horizon_color = Color(0.066123426, 0.082076155, 0.35599136, 1)
 ground_bottom_color = Color(0, 0, 0, 1)
 ground_horizon_color = Color(0, 0, 0, 1)
@@ -27,14 +27,12 @@ sky_material = SubResource("ProceduralSkyMaterial_qi2p4")
 background_mode = 2
 sky = SubResource("Sky_4gyqm")
 tonemap_mode = 3
-sdfgi_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.03
 volumetric_fog_albedo = Color(0.16142699, 0.1614323, 0.20180693, 1)
 volumetric_fog_emission_energy = 68.15
 volumetric_fog_length = 128.0
 adjustment_enabled = true
-adjustment_brightness = 1.2
 
 [sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_272bh"]
 _shader_parameters = {

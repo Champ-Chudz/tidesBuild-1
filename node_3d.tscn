@@ -18,7 +18,7 @@ sky = SubResource("Sky_yf5fn")
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 
-[node name="Node3D" type="Node3D" unique_id=560354305]
+[node name="Node3Dnemy" type="Node3D" unique_id=560354305]
 
 [node name="OceanSurface" type="Node3D" parent="." unique_id=356129471]
 script = ExtResource("1_a202f")
