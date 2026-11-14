@@ -1,9 +1,9 @@
 
 extends CharacterBody3D
 #ooooo special floating variables, but only one of them is a "float" variable
-@export var boat: Node3D
-@export var float_speed: float = 3.0
-@export var boat_height_offset: float = 0.0
+@export var boat: Node3D#HAS TO BE ASSIGNED WHEN ENEMY IS PLACED IN A SCENE
+@export var float_speed: float = 3.0#Different limbs, different speed, also manipulatable(is that a word?)
+@export var boat_height_offset: float = 0.0#Name is self explanatory
 
 @export var speed: float = 4.0#90% sure this is useless, but it could be a load bearing variable soooo
 @export var wander_radius: float = 8.0
