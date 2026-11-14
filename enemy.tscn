@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bdg4k3derwino"]
 
-[ext_resource type="Script" uid="uid://cy76cfewut25i" path="res://enemyMovement.gd" id="1_7k104"]
+[ext_resource type="Script" uid="uid://cy76cfewut25i" path="res://enemyMovementGround.gd" id="1_7k104"]
 [ext_resource type="ArrayMesh" uid="uid://dqxckkw71xx4w" path="res://demo/models/lionfish.obj" id="2_4gyqm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qx1e0"]

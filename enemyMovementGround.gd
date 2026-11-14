@@ -1,8 +1,11 @@
+
 extends CharacterBody3D
 
 @export var speed: float = 4.0
 @export var wander_radius: float = 8.0
 @export var wander_wait_time: float = 2.0
+@export var chase_time: float = 20.0
+@export var ignore_time: float = 5.0
 
 var player: CharacterBody3D = null
 var wander_target: Vector3
@@ -10,6 +13,11 @@ var wandering: bool = false
 var wander_timer: float = 0.0
 var random = RandomNumberGenerator.new()#This is what chooses the direction for wandering
 											#I do feel this is implied, but I need idiots to understand this
+
+var chasing: bool = false
+var chase_timer: float = 0.0
+var ignore_timer: float = 0.0
+var ignoring_player: bool = false
 
 #Ready for our extremely fun NavigationMesh implementation /s
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D#Handy dandy navigation agent!
@@ -32,7 +40,27 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 
-	if player:
+	#Handle the player ignoring timer. Changing this should be accessible at the top of the program
+	if ignoring_player:
+		ignore_timer += delta
+
+		if ignore_timer >= ignore_time:
+			ignoring_player = false
+			ignore_timer = 0.0
+
+	#Handle the chase timer. also accessible at the top of the program
+	if chasing:
+		chase_timer += delta
+
+		if chase_timer >= chase_time:
+			chasing = false
+			chase_timer = 0.0
+			ignoring_player = true
+			ignore_timer = 0.0
+			player = null
+			choose_wander_target()
+
+	if player and chasing:
 		#Calculate the direction toward the player
 		#NavigationAgent3D now calculates a path instead of moving directly toward the player.
 
@@ -60,14 +88,19 @@ func _physics_process(delta: float) -> void:
 
 #Triggered when a physics body enters the sphere radius
 func _on_area_3d_detection_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		player = body
+	if body.is_in_group("player") and not ignoring_player:
+		if not chasing:
+			player = body
+			chasing = true
+			chase_timer = 0.0
 
 
 #Triggered when a physics body leaves the sphere radius
 func _on_area_3d_detection_body_exited(body: Node3D) -> void:
 	if body == player:
 		player = null
+		chasing = false
+		chase_timer = 0.0
 		choose_wander_target()
 
 

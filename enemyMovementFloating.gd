@@ -1,0 +1,209 @@
+
+extends CharacterBody3D
+#ooooo special floating variables, but only one of them is a "float" variable
+@export var boat: Node3D
+@export var float_speed: float = 3.0
+@export var boat_height_offset: float = 0.0
+
+@export var speed: float = 4.0#90% sure this is useless, but it could be a load bearing variable soooo
+@export var wander_radius: float = 8.0
+@export var wander_wait_time: float = 2.0
+@export var chase_time: float = 20.0
+@export var ignore_time: float = 5.0
+
+var player: CharacterBody3D = null
+var wander_target: Vector3
+var wandering: bool = false
+var wander_timer: float = 0.0
+var random = RandomNumberGenerator.new()#This is what chooses the direction for wandering
+											#I do feel this is implied, but I need idiots to understand this
+
+var chasing: bool = false
+var chase_timer: float = 0.0
+var ignore_timer: float = 0.0
+var ignoring_player: bool = false
+
+#Ready for our extremely fun NavigationMesh implementation /s
+@onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D#Handy dandy navigation agent!
+
+
+func _ready() -> void:
+	random.randomize()
+
+	#Wait for the navigation map to synchronize.
+	await get_tree().physics_frame
+
+	var navigation_map = navigation_agent.get_navigation_map()
+
+	#Keep waiting until the navigation map is ready.
+	while NavigationServer3D.map_get_iteration_id(navigation_map) == 0:
+		await get_tree().physics_frame
+
+	choose_wander_target()
+
+
+func _physics_process(delta: float) -> void:
+
+	#Handle the player ignoring timer. Changing this should be accessible at the top of the program
+	if ignoring_player:
+		ignore_timer += delta
+
+		if ignore_timer >= ignore_time:
+			ignoring_player = false
+			ignore_timer = 0.0
+
+	#Handle the chase timer. also accessible at the top of the program
+	if chasing:
+		chase_timer += delta
+
+		if chase_timer >= chase_time:
+			chasing = false
+			chase_timer = 0.0
+			ignoring_player = true
+			ignore_timer = 0.0
+			player = null
+			choose_wander_target()
+
+	if player and chasing:
+		#Calculate the direction toward the player
+		#NavigationAgent3D now calculates a path instead of moving directly toward the player.
+
+		var player_position = player.global_position
+
+		#Only update the destination when the player has moved enough.
+		if navigation_agent.target_position.distance_to(player_position) > 0.5:
+			navigation_agent.target_position = player_position
+
+	else:
+		#Wander when player is not detected
+		wander(delta)
+
+	#Follow the calculated navigation path.
+	move_toward_navigation_target()
+
+	#Float toward the boat's height without exceeding it.
+	if boat:
+		var target_height = boat.global_position.y + boat_height_offset
+		var height_difference = target_height - global_position.y
+
+		velocity.y = clamp(
+			height_difference / delta,
+			-float_speed,
+			float_speed
+		)
+	else:
+		velocity.y = 0
+
+	move_and_slide()
+
+
+#Triggered when a physics body enters the sphere radius
+func _on_area_3d_detection_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player") and not ignoring_player:
+		if not chasing:
+			player = body
+			chasing = true
+			chase_timer = 0.0
+
+
+#Triggered when a physics body leaves the sphere radius
+func _on_area_3d_detection_body_exited(body: Node3D) -> void:
+	if body == player:
+		player = null
+		chasing = false
+		chase_timer = 0.0
+		choose_wander_target()
+
+
+#Random wandering behavior
+func wander(delta: float) -> void:
+
+	if not wandering:
+		velocity.x = 0
+		velocity.z = 0
+
+		wander_timer += delta
+
+		#Wait before choosing another destination
+		if wander_timer >= wander_wait_time:
+			choose_wander_target()
+
+		return#I'm hungry INNA MINUTE
+
+
+#Moves the enemy along the navigation path.
+func move_toward_navigation_target() -> void:
+
+	#Get the next point along the calculated path.
+	var next_position = navigation_agent.get_next_path_position()
+
+	#Check whether the navigation destination has been reached.
+	if navigation_agent.is_navigation_finished():
+
+		if not player and wandering:
+			wandering = false#You made it!
+			wander_timer = 0.0#Break time
+
+		velocity.x = 0#Hold your horses
+		velocity.z = 0
+		return
+
+	#Calculate direction toward the next navigation point.
+	var direction = global_position.direction_to(next_position)
+
+	direction.y = 0
+	direction = direction.normalized()
+
+	#Set horizontal velocity
+	velocity.x = direction.x * speed
+	velocity.z = direction.z * speed
+
+	#Makes the enemy smoothly look toward the direction it is moving.
+	var look_target = Vector3(
+		global_position.x + direction.x,
+		global_position.y,
+		global_position.z + direction.z
+	)
+
+	if direction.length() > 0.01:
+		look_at(look_target, Vector3.UP)
+
+
+#Chooses a random wandering destination
+#Chooses a random wandering destination
+func choose_wander_target() -> void:
+
+	var angle = random.randf_range(0.0, TAU)#like the 40k blue guys!
+	var distance = random.randf_range(2.0, wander_radius)
+
+	var offset = Vector3(#Oh boy, math!
+		cos(angle) * distance,
+		0,
+		sin(angle) * distance
+	)
+
+	var candidate = global_position + offset
+
+	#Find the closest valid point on the NavigationMesh.
+	var navigation_map = navigation_agent.get_navigation_map()
+
+	wander_target = NavigationServer3D.map_get_closest_point(
+		navigation_map,
+		candidate
+	)
+
+	#Don't accept an invalid destination.
+	if wander_target == Vector3.ZERO:
+		wandering = false
+		return
+
+	#Tell the NavigationAgent3D where to navigate.
+	navigation_agent.target_position = wander_target
+
+	wandering = true
+	wander_timer = 0.0
+
+#when the player make scontact
+func _on_area_3_dplayer_hit_body_entered(body: Node3D) -> void:
+	if body == player:
+		Global.playerdead = true
