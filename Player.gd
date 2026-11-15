@@ -5,7 +5,7 @@ extends CharacterBody3D
 
 const SPEED = 7.5
 const JUMP_VELOCITY = 10.0
-
+const CLIMB_SPEED = 3.0
 
 var PlayerSensitivity = 0.005
 var active := false
@@ -27,12 +27,28 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	else:
-		velocity.y = maxf(velocity.y, 0.0)
-	move_and_slide()
+	if Global.onLadder:
+		# No gravity, W/S move up and down
+		velocity.y = 0.0
+		if active:
+			if Input.is_action_pressed("W_Input"):
+				velocity.y = CLIMB_SPEED
+			elif Input.is_action_pressed("S_Input"):
+				velocity.y = -CLIMB_SPEED
+			# Jump off the ladder
+			if Input.is_action_just_pressed("ui_accept"):
+				Global.onLadder = false
+				velocity.y = JUMP_VELOCITY
 
+	else:
+		if active and Input.is_action_just_pressed("ui_accept") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+		if not is_on_floor():
+			velocity += get_gravity() * delta
+		else:
+			velocity.y = maxf(velocity.y, 0.0)
+
+	move_and_slide()
 func _ready() -> void:
 	_set_controlled(player)
 	floor_snap_length = 0.5

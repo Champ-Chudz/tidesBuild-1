@@ -83,6 +83,9 @@ points = PackedVector3Array(4.1, 0.2, 1, 4.1, 0.2, 1.35, 4.1, 0.25, 1, 4.1, 0.25
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_atdcd"]
 points = PackedVector3Array(2.4, -0.8, 1.4, 2.4, -0.8, 1.9, 2.4, -0.7, 2, 2.4, 0.2, 1.4, 2.4, 0.95, 2, 2.4, 1.2, 1.9, 2.4, 1.2, 1.95, 2.5, 1.2, 1.85, 2.55, -0.75, 1.95, 2.6, -0.8, 1.9, 2.7, -0.65, 2, 2.7, 1.2, 1.95, 2.8, 0.95, 2, 2.85, -0.6, 2, 2.85, 0.9, 2, 2.95, 1.2, 1.8, 3.6, 1.2, 1.8, 3.6, 1.2, 1.85, 3.8, -0.55, 1.9, 3.8, 0.9, 1.9, 4.2, 0.9, 1.85, 4.45, 0.4, 1.4, 4.5, -0.8, 1.65, 4.65, -0.55, 1.8, 5.15, -0.5, 1.75, 5.15, 0.4, 1.75, 5.2, -0.8, 1.55, 5.2, -0.65, 1.65, 5.6, -0.8, 1.4, 5.6, -0.8, 1.45, 5.65, -0.5, 1.65, 5.95, -0.45, 1.6, 5.95, 0.4, 1.6, 6.45, -0.45, 1.5, 6.5, -0.5, 1.4, 6.5, -0.5, 1.45, 6.7, -0.4, 1.4, 6.7, -0.4, 1.45, 6.7, 0.4, 1.4, 6.7, 0.4, 1.45)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_57qmd"]
+size = Vector3(1, 7.743042, 1.9376221)
+
 [node name="FloatingBody" type="RigidBody3D" unique_id=1451879912 groups=["camera"]]
 collision_mask = 2
 mass = 1000.0
@@ -221,7 +224,21 @@ shape = SubResource("ConvexPolygonShape3D_udlyd")
 transform = Transform3D(-1.5298986e-07, 0, -3.5, 0, 3.5, 0, 3.5, 0, -1.5298986e-07, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_atdcd")
 
+[node name="Ladder" type="Area3D" parent="." unique_id=2041194480]
+transform = Transform3D(0.9897695, 0, 0.14267565, 0, 1, 0, -0.14267565, 0, 0.9897695, -6.899343, 0, 16.640709)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ladder" unique_id=473180194]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9073486e-06, 0.22955322, 0.46881008)
+shape = SubResource("BoxShape3D_57qmd")
+
+[node name="Label3D" type="Label3D" parent="Ladder" unique_id=331537320]
+transform = Transform3D(0.043574482, 0, -0.9990503, 0, 1, 0, 0.9990503, 0, 0.043574482, 0.62268734, 1.6192188, 0.2929144)
+text = "Ladder"
+font_size = 52
+
 [connection signal="body_entered" from="Area3Dcameracontrol" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3Dcameracontrol" to="." method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="Area3Dlootzone" to="." method="_on_area_3_dlootzone_body_entered"]
 [connection signal="body_exited" from="Area3Dlootzone" to="." method="_on_area_3_dlootzone_body_exited"]
+[connection signal="body_entered" from="Ladder" to="." method="_on_ladder_body_entered"]
+[connection signal="body_exited" from="Ladder" to="." method="_on_ladder_body_exited"]

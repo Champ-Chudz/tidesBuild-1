@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bi6agseqao6f"]
+
+[ext_resource type="Script" uid="uid://chntxl1jk8rh0" path="res://load_screen.gd" id="1_cjlmp"]
+
+[node name="Control" type="Control" unique_id=249243524]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_cjlmp")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1773675554]
+layout_mode = 0
+offset_left = -264.0
+offset_top = -147.0
+offset_right = 263.0
+offset_bottom = 151.0
+color = Color(0.2829821, 0.33766562, 0.58931553, 1)
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=182619297]
+layout_mode = 0
+offset_left = -96.0
+offset_top = -27.0
+offset_right = 96.0
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1281016149]
+zoom = Vector2(2.375, 2.375)
+
+[node name="Label" type="Label" parent="." unique_id=395988211]
+layout_mode = 0
+offset_left = -37.0
+offset_top = -56.0
+offset_right = 38.0
+offset_bottom = -33.0
+text = "Loading..."

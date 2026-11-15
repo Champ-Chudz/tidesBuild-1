@@ -1,6 +1,6 @@
 extends FloatingBody
 
-
+@onready var Player = "res://Player.tscn"
 @export var thrust := 100000.0
 @export var steer_torque := 55000.0
 @export var active := true
@@ -32,12 +32,15 @@ func _physics_process(delta: float) -> void:
 	apply_torque(Vector3.UP * steer_torque * steer)
 
 
+
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
 		Global.InControlZone = true
 
 func _on_area_3d_body_exited(body: CharacterBody3D) -> void:
 	Global.InControlZone = false
+
+
 
 func _on_area_3_dlootzone_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
@@ -46,3 +49,13 @@ func _on_area_3_dlootzone_body_entered(body: Node3D) -> void:
 func _on_area_3_dlootzone_body_exited(body: Node3D) -> void:
 	if body is CharacterBody3D:
 		Global.inLootZone = false
+
+
+
+func _on_ladder_body_entered(body: Node3D) -> void:
+	if body is CharacterBody3D:
+		Global.onLadder = true
+
+func _on_ladder_body_exited(body: Node3D) -> void:
+	if body is CharacterBody3D:
+		Global.onLadder = false

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Ocean="*uid://0x18b2h5nnor"
 Global="*uid://cbqf6rabiri5e"
+LoadingScene="*uid://bbfhr3m8x3phd"
 
 [display]
 
