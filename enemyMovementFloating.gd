@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var boat: Node3D#HAS TO BE ASSIGNED WHEN ENEMY IS PLACED IN A SCENE
 @export var float_speed: float = 3.0#Different limbs, different speed, also manipulatable(is that a word?)
 @export var boat_height_offset: float = 0.0#Name is self explanatory
+@export var wander_height_below_boat: float = 8.0#How far below the boat the enemy wanders. Match this to the detection radius.
 
 @export var speed: float = 4.0#90% sure this is useless, but it could be a load bearing variable soooo
 @export var wander_radius: float = 8.0
@@ -83,11 +84,17 @@ func _physics_process(delta: float) -> void:
 
 	#Float toward the boat's height without exceeding it.
 	if boat:
-		var target_height = boat.global_position.y + boat_height_offset
+		var wander_height = boat.global_position.y + boat_height_offset - wander_height_below_boat
+		var target_height = wander_height
+
+		#Descend toward the player's height when chasing.
+		if player and chasing:
+			target_height = min(player.global_position.y, wander_height)
+
 		var height_difference = target_height - global_position.y
 
 		velocity.y = clamp(
-			height_difference / delta,
+			height_difference / maxf(delta, 0.001),
 			-float_speed,
 			float_speed
 		)
